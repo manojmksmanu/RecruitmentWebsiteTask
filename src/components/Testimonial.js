@@ -14,7 +14,7 @@ const testimonials = [
     name: "James Rodriguez",
     position: "Product Manager",
     company: "InnovateTech",
-    text: "The personalized approach was a game-changer. I’m thriving now!",
+    text: "The personalized approach was a game-changer. I'm thriving now!",
   },
   {
     name: "Emily Chen",
@@ -155,7 +155,7 @@ function Testimonial({ staggerContainer, fadeInUp }) {
                   isDarkMode ? "text-gray-300" : "text-gray-600"
                 }`}
               >
-                "{testimonial.text}"
+                {testimonial.text}
               </p>
             </motion.div>
           ))}

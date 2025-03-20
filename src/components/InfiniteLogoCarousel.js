@@ -1,8 +1,8 @@
-// components/InfiniteLogoCarousel.jsx
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "@/context/ThemeContext";
+import Image from "next/image";
 
 const InfiniteLogoCarousel = () => {
   const { isDarkMode } = useTheme();
@@ -67,10 +67,13 @@ const InfiniteLogoCarousel = () => {
                   isDarkMode ? "bg-gray-800" : "bg-white"
                 } shadow-md transition-all duration-300 hover:shadow-lg`}
               >
-                <img
+                <Image
                   src={company.logo}
                   alt={`${company.name} logo`}
-                  className="max-w-full max-h-16 object-contain"
+                  width={180} // Adjust as needed
+                  height={80} // Adjust as needed
+                  priority={index < companyLogos.length} // Load first row images first
+                  unoptimized // Avoid unnecessary Next.js optimizations for local images
                 />
               </div>
             ))}
@@ -100,10 +103,12 @@ const InfiniteLogoCarousel = () => {
                   isDarkMode ? "bg-gray-800" : "bg-white"
                 } shadow-md transition-all duration-300 hover:shadow-lg`}
               >
-                <img
+                <Image
                   src={company.logo}
                   alt={`${company.name} logo`}
-                  className="max-w-full max-h-16 object-contain"
+                  width={180}
+                  height={80}
+                  unoptimized
                 />
               </div>
             ))}
