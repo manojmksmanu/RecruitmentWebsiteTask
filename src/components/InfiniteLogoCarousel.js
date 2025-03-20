@@ -7,11 +7,10 @@ import Image from "next/image";
 const InfiniteLogoCarousel = () => {
   const { isDarkMode } = useTheme();
 
-  // Company logos array - replace with actual company logos
   const companyLogos = [
     { name: "Google", logo: "/images/google.png" },
     { name: "Microsoft", logo: "/images/microsoft.png" },
-    { name: "Apple", logo: "/images/appl-log.png" },
+    { name: "Apple", logo: "/images/apple-logo.png" },
     { name: "Meta", logo: "/images/meta.png" },
     { name: "Tesla", logo: "/images/tesla.png" },
     { name: "IBM", logo: "/images/ibm.png" },
@@ -20,7 +19,6 @@ const InfiniteLogoCarousel = () => {
     { name: "Cisco", logo: "/images/cisco.png" },
   ];
 
-  // Duplicate logos to create seamless effect
   const duplicatedLogos = [...companyLogos, ...companyLogos];
 
   return (
@@ -47,10 +45,8 @@ const InfiniteLogoCarousel = () => {
         {/* First row of logos, moving right to left */}
         <div className="relative overflow-hidden w-full">
           <motion.div
-            className="flex"
-            animate={{
-              x: ["0%", "-50%"],
-            }}
+            className="flex items-center"
+            animate={{ x: ["0%", "-50%"] }}
             transition={{
               x: {
                 repeat: Infinity,
@@ -63,35 +59,34 @@ const InfiniteLogoCarousel = () => {
             {duplicatedLogos.map((company, index) => (
               <div
                 key={`row1-${index}`}
-                className={`flex-shrink-0 w-48 h-24 mx-6 flex items-center justify-center rounded-lg ${
+                className={`flex-shrink-0 w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] h-auto mx-3 flex items-center justify-center rounded-lg ${
                   isDarkMode ? "bg-gray-800" : "bg-white"
-                } shadow-md transition-all duration-300 hover:shadow-lg`}
+                } shadow-md transition-all duration-300 hover:shadow-lg p-4`}
               >
                 <Image
                   src={company.logo}
                   alt={`${company.name} logo`}
-                  width={180} // Adjust as needed
-                  height={80} // Adjust as needed
-                  priority={index < companyLogos.length} // Load first row images first
-                  unoptimized // Avoid unnecessary Next.js optimizations for local images
+                  width={100}
+                  height={40}
+                  className="max-w-full h-auto"
+                  priority={index < companyLogos.length}
+                  unoptimized
                 />
               </div>
             ))}
           </motion.div>
         </div>
 
-        {/* Second row of logos, moving left to right (opposite direction) */}
+        {/* Second row of logos, moving left to right */}
         <div className="relative overflow-hidden w-full mt-6">
           <motion.div
-            className="flex"
-            animate={{
-              x: ["-50%", "0%"],
-            }}
+            className="flex items-center"
+            animate={{ x: ["-50%", "0%"] }}
             transition={{
               x: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: 25, // Slightly different duration for visual interest
+                duration: 25,
                 ease: "linear",
               },
             }}
@@ -99,15 +94,16 @@ const InfiniteLogoCarousel = () => {
             {duplicatedLogos.map((company, index) => (
               <div
                 key={`row2-${index}`}
-                className={`flex-shrink-0 w-48 h-24 mx-6 flex items-center justify-center rounded-lg ${
+                className={`flex-shrink-0 w-[140px] sm:w-[180px] md:w-[220px] lg:w-[260px] h-auto mx-3 flex items-center justify-center rounded-lg ${
                   isDarkMode ? "bg-gray-800" : "bg-white"
-                } shadow-md transition-all duration-300 hover:shadow-lg`}
+                } shadow-md transition-all duration-300 hover:shadow-lg p-4`}
               >
                 <Image
                   src={company.logo}
                   alt={`${company.name} logo`}
-                  width={180}
-                  height={80}
+                  width={100}
+                  height={40}
+                  className="max-w-full h-auto"
                   unoptimized
                 />
               </div>
